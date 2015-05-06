@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Ted ToolBox</title>
+
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"/>
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+
+    <link href="../css/ratchet.css" rel="stylesheet"/>
+    <script src="../js/mes_fonctions.js"/>
+    <script src="../js/ratchet.js"/>
+    <script src="../js/index.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+  </head>
+  <body>
+
+    <header class="bar bar-nav">
+      <a class="icon icon-left-nav pull-left" href="../index.html" data-transition="slide-out"></a>
+      <h1 class="title">Informations Appareil</h1>
+    </header>
+
+    <div class="content">
+      <div class="content-padded" id="contenu">
+        Cliquer sur le bouton pour avoir le niveau de votre Batterie.
+        <br/><br/>
+        <button class="btn btn-primary btn-block" onClick=alert(getInformations())> Obtenir Infos </button>
+      </div>
+    </div>
+
+  </body>
+</html>

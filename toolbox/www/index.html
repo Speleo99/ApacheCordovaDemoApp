@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Ted ToolBox</title>
+
+    <!-- Viewport pour désactiver la possibilité de zoomer  -->
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="msapplication-tap-highlight" content="no" />
+    <!-- Utilisation du css ratchet -->
+    <link href="css/ratchet.css" rel="stylesheet"/>
+    <link href="css/jquery.circliful.css" rel="stylesheet" type="text/css" />
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <!-- <link href="css/ratchet-theme-android.css" rel="stylesheet">-->
+    <script src="js/index.js"></script>
+    <script src="js/mes_fonctions.js"></script>
+    <script src="js/ratchet.js"></script>
+    <script src="js/jquery.js"/>
+    <script src="js/jquery_rotate.js"/>
+    <script src="js/PushCustom.js"></script>
+    <script src="js/jquery.circliful.min.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript">
+        function onLoad() {
+          document.addEventListener("deviceready", app.onDeviceReady, false);
+        }
+    </script>
+  </head>
+  <!-- Menu principal de l'appli -->
+  <body onload="onLoad()">
+    <header class="bar bar-nav">
+      <a class="icon icon-gear pull-right" href="#settingsModal"></a>
+      <h1 class="title">Ted ToolBox</h1>
+    </header>
+
+    <div class="content">
+      <div class="content-padded">
+        <h3>Choisir un test à réaliser</h3>
+        <ul class="table-view">
+          <!--
+          <li class="table-view-cell">
+            <a class="navigate-right" href="test/connexion.html" data-transition="slide-in">
+              <strong>Connexion</strong>
+            </a>
+          </li>
+          <li class="table-view-cell">
+            <a class="navigate-right" href="test/batterie.html" data-transition="slide-in">
+              <strong>Batterie</strong>
+            </a>
+          </li>-->
+          <li class="table-view-cell">
+            <a class="navigate-right" href="test/vibre.html" data-transition="slide-in">
+              <i class='media-object pull-left fa fa-chain-broken'></i> <strong>Vibration</strong>
+            </a>
+          </li>
+          <li class="table-view-cell">
+            <a class="navigate-right" href="test/geolocalisation.html" data-transition="slide-in">
+              <i class='media-object pull-left fa fa-street-view'></i> <strong>Geolocalisation</strong>
+            </a>
+          </li>
+          <li class="table-view-cell">
+            <a class="navigate-right" href="test/infos.html" data-transition="slide-in">
+              <i class='media-object pull-left fa fa-tablet'></i> <strong>&nbsp;Infos Appareil</strong>
+            </a>
+          </li>
+          <li class="table-view-cell">
+            <a class="navigate-right" href="test/accel.html" data-transition="slide-in">
+              <i class='media-object pull-left fa fa-arrows-alt'></i><strong> Accelerometre</strong>
+            </a>
+          </li>
+          <li class="table-view-cell">
+            <a class="navigate-right" href="test/boussole.html" data-transition="slide-in">
+              <i class='media-object pull-left fa fa-compass'></i> <strong>Boussole</strong>
+            </a>
+          </li>
+          <li class="table-view-cell">
+            <a class="navigate-right" href="test/son.html" data-transition="slide-in">
+              <i class='media-object pull-left fa fa-music'></i><strong>Son</strong>
+            </a>
+          </li>
+          <li class="table-view-cell">
+            <a class="navigate-right" href="test/sms.html" data-transition="slide-in">
+              <i class='media-object pull-left fa fa-comments-o'></i> <strong>SMS</strong>
+            </a>
+          </li>
+          <li class="table-view-cell">
+            <a class="navigate-right" href="test/mail.html" data-transition="slide-in">
+              <i class='media-object pull-left fa fa-envelope'></i> <strong>Mail</strong>
+            </a>
+          </li>
+          <li class="table-view-cell">
+            <a class="navigate-right" href="test/camera.html" data-transition="slide-in">
+              <i class='media-object pull-left fa fa-camera'></i> <strong>Camera</strong>
+            </a>
+          </li>          
+        </ul>
+      </div>
+    <!-- Menu parametre de l'appli -->
+    <div id="settingsModal" class="modal">
+      <header class="bar bar-nav">
+        <a class="icon icon-close pull-right" href="#settingsModal"></a>
+        <h1 class="title">Parametres ToolBox</h1>
+      </header>
+
+      <div class="content">
+        <ul class="table-view">
+          <li class="table-view-cell media">
+            <span class="media-object pull-left icon icon-sound"></span>
+            <div class="media-body">
+              Activer le son
+            </div>
+            <div class="toggle">
+              <div class="toggle-handle"></div>
+            </div>
+          </li>
+        </ul>
+        <div class="content-padded">
+          <button class="btn btn-positive btn-block">Sauvegarder Parametres</button>
+        </div>    
+        <div class="boxed">      
+          <center><h5> Infos </h5> 
+         Application de test réalisée lors d'une étude sur Apache Cordova pour un stage dans l'entreprise Natixis.<br/><br/></center>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

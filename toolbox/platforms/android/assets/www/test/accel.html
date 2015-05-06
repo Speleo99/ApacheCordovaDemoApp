@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Ted ToolBox</title>
+
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"/>
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+
+    <link href="../css/ratchet.css" rel="stylesheet"/>
+    <script src="../js/mes_fonctions.js"/>
+    <script src="../js/ratchet.js"/>
+    <script src="../js/index.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript">
+      var watchID = null;
+      var drawID = null;                // Draw time interval.
+    </script>
+  </head>
+  <body>
+    <header class="bar bar-nav">
+      <a class="icon icon-left-nav pull-left" href="../index.html" data-transition="slide-out"></a>
+      <h1 class="title">Accelerometre</h1>
+    </header>
+
+    <div class="content">
+      <div class="content-padded" id="contenu">
+         Cliquer sur les boutons commencer/arrêter la capture de l'accelerometre.
+         <br/><br/>
+         <button class="btn btn-positive btn-block" onClick="watchID=start_accel(); drawID=startPlay()" id="start">Commencer</button>
+         <button class="btn btn-negative btn-block" onClick="stop_accel(watchID);stopPlay(drawID)" id="stop" disabled="true">Arrêter</button>         
+         <br/>
+         X: <div id="spanDirectionX"></div>
+         Y:<div id="spanDirectionY"></div>
+         Z:<div id="spanDirectionZ"></div>
+         Timestamp:<div id="spanTimeStamp"></div>
+      </div>
+      <center><canvas id="canvas" style="border:1px solid black" width="320px" height="300px">
+        Ce texte est affiché si votre navigateur ne supporte pas le HTML5.
+      </canvas></center>
+    </div>
+  </body>
+</html>

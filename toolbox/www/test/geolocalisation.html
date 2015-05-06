@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Ted ToolBox</title>
+
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"/>
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+
+    <link href="../css/ratchet.css" rel="stylesheet"/>
+    <script src="../js/mes_fonctions.js"/>
+    <script src="../js/ratchet.js"/>
+    <script src="../js/index.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+  </head>
+  <body>
+    <header class="bar bar-nav">
+      <a class="icon icon-left-nav pull-left" href="../index.html" data-transition="slide-out"></a>
+      <h1 class="title">Geolocalisation</h1>
+    </header>
+
+    <div class="content">
+      <div class="content-padded" id="contenu">
+         Cliquer sur le bouton pour avoir vos coordonnées.
+         <br/><br/>
+         <button class="btn btn-primary btn-block" onClick=charger_maps();>Localiser moi !</button>
+         <br/>
+        <div style="display: none;" id="gmaps"> 
+          <h4> Google Maps </h4>  
+          <div style="width:100%;height:400px" id="map_canvas">
+              <button id="cherche" style="display: none;" class="btn btn-primary" onClick="map_position()">
+                <span class="icon icon-search"></span>
+                Charger ma position
+              </button>
+          </div>
+          <br/>
+          <button class="btn btn-primary btn-block btn-outlined" id="button">Plein Ecran</button> 
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
