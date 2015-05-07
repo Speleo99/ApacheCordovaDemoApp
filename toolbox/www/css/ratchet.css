@@ -302,6 +302,10 @@ a:active {
   margin: 10px;
 }
 
+.content-gauche {
+  margin-left:5%;
+}
+
 .pull-left {
   float: left;
 }
@@ -1484,4 +1488,13 @@ position: absolute;
 
 #alignement{
   margin-left:30px;
+}
+
+.console{
+  background: #000;
+  border: 3px groove #ccc;
+  color: #ccc;
+  display: block;
+  padding: 5px;
+  margin:1%;
 }

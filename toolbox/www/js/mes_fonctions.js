@@ -1,8 +1,44 @@
+/* Les appels aux plugins se font dans ce script Javascript
+
+Tous les plugins sont disponibles ici :
+--> http://plugins.cordova.io/#/
+
+Voici la liste des plugins utilisés dans l'application :
+
+ /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*\
+| com.blueshift.cordova.battery 0.3.7 "CordovaBattery"                |
+| com.cordova.plugins.sms 0.1.2 "Cordova SMS Plugin"                  |
+| com.google.playservices 23.0.0 "Google Play Services for Android"   |
+| com.phonegap.plugins.PushPlugin 2.4.0 "PushPlugin"                  |               
+| com.pushwoosh.plugins.pushwoosh 3.5.1 "Pushwoosh"                   |
+| de.appplant.cordova.plugin.email-composer 0.8.2 "EmailComposer"     |
+| nl.x-services.plugins.toast 2.0.4 "Toast"                           |
+| org.apache.cordova.battery-status 0.2.12 "Battery"                  |
+| org.apache.cordova.camera 0.3.6 "Camera"                            |
+| org.apache.cordova.device 0.3.0 "Device"                            |
+| org.apache.cordova.device-motion 0.2.11 "Device Motion"             |
+| org.apache.cordova.device-orientation 0.3.11 "Device Orientation"   |
+| org.apache.cordova.dialogs 0.3.0 "Notification"                     |
+| org.apache.cordova.file 1.3.3 "File"                                |
+| org.apache.cordova.geolocation 0.3.12 "Geolocation"                 |
+| org.apache.cordova.media 0.2.16 "Media"                             |
+| org.apache.cordova.network-information 0.2.15 "Network Information" |
+| org.apache.cordova.vibration 0.3.13 "Vibration"                     |
+| plugin.google.maps 1.2.5 "phonegap-googlemaps-plugin"               |
+| plugin.http.request 1.0.4 "phonegap-http-request"                   |
+\*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
 document.addEventListener('backbutton', backPressed, false);
 // Un appuie physique sur le bouton back du tél ramène à la page précédente.
 function backPressed(){
         window.history.back();
 }
+
+/////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////// Battery-Status //////////////////////////////////
+///////////////// Plus d'infos sur les fonctions dans le readme Git ///////////////
+///////////// https://github.com/apache/cordova-plugin-battery-status ////////////
+/////////////////////////////////////////////////////////////////////////////////
 
 function getNiveauBatterie() {
     var batterie = $("#niveauBatterie");
@@ -14,6 +50,12 @@ function getNiveauBatterie() {
         console.log('Niveau de batterie: ' + level.batteryPercent + ' %.');
     });
 }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////// Connection ///////////////////////////////////////////////
+/////////////////////// Plus d'infos sur les fonctions dans la doc cordova /////////////////////
+///////// https://cordova.apache.org/docs/en/3.0.0/cordova_connection_connection.md.html //////
+//////////////////////////////////////////////////////////////////////////////////////////////
 
 function test_connexion() {
     var networkState = navigator.connection.type;
@@ -58,6 +100,12 @@ function test_connexion() {
     console.log(states[networkState]);
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////// Device /////////////////////////////////////////////////
+/////////////////////// Plus d'infos sur les fonctions dans la doc cordova /////////////////////
+///////////// https://cordova.apache.org/docs/en/3.0.0/cordova_device_device.md.html //////////
+//////////////////////////////////////////////////////////////////////////////////////////////
+
 function getInformations() {
 
     var version_cordova = device.cordova;
@@ -88,6 +136,14 @@ function getInformations() {
         "\nTéléphone: " + telephone_modele + "\nOS: " + telephone_os + " " + os_version + "\nUUID: " + uuid_tel);
 
 }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////// Geolocalisation ////////////////////////////////////////////
+/////////////////////// Plus d'infos sur les fonctions dans la doc cordova /////////////////////
+//////// https://cordova.apache.org/docs/en/3.0.0/cordova_geolocation_geolocation.md.html /////
+//////////////////////////// et Google Maps Plugin pour Cordova //////////////////////////////
+////////////////// https://github.com/wf9a5m75/phonegap-googlemaps-plugin ///////////////////
+////////////////////////////////////////////////////////////////////////////////////////////
 
 function localisation() {
 
@@ -163,21 +219,25 @@ function onMapReady() {
     map.showDialog();
 }
 
-// DEBUT FONCTIONS ACCELEROMETRE
+//////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////// Accelerometre //////////////////////////////////////////////
+/////////////////////// Plus d'infos sur les fonctions dans la doc cordova /////////////////////
+///// https://cordova.apache.org/docs/en/3.0.0/cordova_accelerometer_accelerometer.md.html ////
+//////////////////////////////////////////////////////////////////////////////////////////////
 
-var canvas_ctx;                 // Contexte du canvas HTML
-var VITESSE = 2;                 // Frequence de maj des données x,y,z et donc de la vitesse du cercle (fluidité).
-var FACTEUR_DISTANCE = .1;       // Facteur pour ajuster la valeur de l'accelerometre à la distance de l'ecran.
-var ax = 0;                     // Axe d'Acceleration X 
-var ay = 0;                     // Axe d'Acceleration Y 
-var x;                          // Coordonnees X du cercle
-var y;                          // Coordonnes Y du cercle
-var vx = 0;                     // Axe de velocité X
-var vy = 0;                     // Axe de velocité Y
+var canvas_ctx;                   // Contexte du canvas HTML
+var VITESSE = 5;                  // Frequence de maj des données x,y,z et donc de la vitesse du cercle (fluidité).
+var FACTEUR_DISTANCE = .1;        // Facteur pour ajuster la valeur de l'accelerometre à la distance de l'ecran.
+var ax = 0;                       // Axe d'Acceleration X 
+var ay = 0;                       // Axe d'Acceleration Y 
+var x;                            // Coordonnees X du cercle
+var y;                            // Coordonnes Y du cercle
+var vx = 0;                       // Axe de velocité X
+var vy = 0;                       // Axe de velocité Y
 var LARGEUR = 320;                // Largeur du canvas
-var HAUTEUR = 300;               // Hauteur du canvas
-var PERIMETRE = 30;                // Perimetre du cercle
-var COULEUR_CERCLE = "#452345";      // Couleur du cercle
+var HAUTEUR = 300;                // Hauteur du canvas
+var PERIMETRE = 30;               // Perimetre du cercle
+var COULEUR_CERCLE = "#452345";   // Couleur du cercle
 var COULEUR_CANVAS = "#FAF7F8";   // Couleur du
 
 // Initialise les parametres et début de la capture de l'accelerometre
@@ -311,7 +371,11 @@ function draw()
     circle( x, y, PERIMETRE );
 }
 
-// FIN FONCTIONS ACCELEROMETRE
+/////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////// Media ///////////////////////////////////////////
+///////////////// Plus d'infos sur les fonctions dans la doc cordova //////////////
+/////////////// https://www.npmjs.com/package/cordova-plugin-media ///////////////
+/////////////////////////////////////////////////////////////////////////////////
 
 function hey() {
   var media = new Media("/android_asset/www/son/hey.wav");
@@ -322,6 +386,12 @@ function listen() {
   var media = new Media("/android_asset/www/son/listen.wav");
   media.play();
 }
+
+/////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////// SMS /////////////////////////////////////////////
+///////////////// Plus d'infos sur les fonctions dans le readme Git ///////////////
+/////////// http://plugins.cordova.io/#/package/com.cordova.plugins.sms //////////
+/////////////////////////////////////////////////////////////////////////////////
 
 function envoiesms() {
   var numero = document.getElementById('saisie_numero').value;
@@ -345,6 +415,14 @@ function envoiesms() {
     window.plugins.toast.showShortBottom("Saisisser un message et un numero SVP.")
   }
 }
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////// Email ///////////////////////////////////////////
+///////////////// Plus d'infos sur les fonctions dans le readme Git ///////////////
+/////////// https://github.com/katzer/cordova-plugin-email-composer //////////////
+/////////////////////////////////////////////////////////////////////////////////
 
 function envoiemail(){
 
@@ -376,7 +454,11 @@ function envoiemail(){
   }
 }
 
-// CAMERA
+/////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////// Camera //////////////////////////////////////////
+///////////////// Plus d'infos sur les fonctions dans la doc cordova //////////////
+///// https://cordova.apache.org/docs/en/3.0.0/cordova_camera_camera.md.html /////
+/////////////////////////////////////////////////////////////////////////////////
  
 function prendrePhoto(){
   navigator.camera.getPicture(capture_reussi, capture_erreur, { quality: 50,
@@ -394,6 +476,13 @@ function capture_erreur(message) {
     window.plugins.toast.showShortBottom('Echec: ' + message);
 }
 
+/////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////// Boussole ////////////////////////////////////////
+///////////////// Plus d'infos sur les fonctions dans la doc cordova //////////////
+//// https://cordova.apache.org/docs/en/3.0.0/cordova_compass_compass.md.html ////
+/////////////////////////////////////////////////////////////////////////////////
+
+// Ajoute la direction où pointe le téléphone à la valeur en degrés.
 function headingToText(h) {
   var t;
   if (typeof h !== "number") {
@@ -436,17 +525,19 @@ function charger_boussole() {
   function success(heading) {
       var needle = $("#compass .needle");
       var info = $("#compass .heading");
+      // true.heading se base sur le pôle nord contrairement au magnetic.heading qui utilise le nord magnétique
       if (lastHeading === heading.trueHeading) return;
       lastHeading = heading.trueHeading;
       needle.css({
       "-webkit-transform": "rotate(+" + heading.trueHeading + "deg)",
       "transform": "rotate(+" + heading.trueHeading + "deg)"
     });
+      // on tourne l'aiguille grâce à la rotation en degrés que donne true.heading
      info.html(Math.round(heading.trueHeading) + "&#xb0; (" + headingToText(heading.trueHeading) + ")");
   }
 
   function fail() {
-    view.html("Error!");
+    view.html("Erreur lors du chargement de la boussole!");
   }
   document.getElementById('start').disabled = true;
   document.getElementById('stop').disabled = false;
@@ -462,4 +553,127 @@ function stop_boussole(watchID) {
     document.getElementById('start').disabled = false;
     document.getElementById('stop').disabled = true;
   }
+}
+
+////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////// Gestionnaire de fichiers ////////////////////////////
+///////////////// Plus d'infos sur les fonctions dans la doc cordova /////////////
+////// https://cordova.apache.org/docs/en/3.0.0/cordova_file_file.md.html ///////
+////////////////////////////////////////////////////////////////////////////////
+
+var fileSystem;
+
+//simple getter par id
+function getById(id) {
+        return document.querySelector(id);
+    }
+//log des actions
+function logit(s) {
+    getById("#reponse").innerHTML = s;
+}
+
+//logs des erreurs
+function onFSError(e) {
+    getById("#reponse").innerHTML = "<h2>Erreur</h2>" + e.toString();
+}
+
+function doDeleteFile(e) {
+    fileSystem.root.getFile("test.txt", {
+        create: true
+    }, function(f) {
+        f.remove(function() {
+            logit("Fichier supprimé <p/>");
+        });
+    }, onFSError);
+}
+
+function metadataFile(m) {
+    logit("Dernière modification du fichier: " + m.modificationTime + "<p/>");
+}
+
+function doMetadataFile(e) {
+    fileSystem.root.getFile("test.txt", {
+        create: true
+    }, function(f) {
+        f.getMetadata(metadataFile, onFSError);
+    }, onFSError);
+}
+
+function readFile(f) {
+    reader = new FileReader();
+    reader.onloadend = function(e) {
+        console.log("Lecture OK");
+        logit(e.target.result + "<p/>");
+    };
+    reader.readAsText(f);
+}
+
+function doReadFile(e) {
+    fileSystem.root.getFile("test.txt", {
+        create: true
+    }, readFile, onFSError);
+}
+
+function appendFile(f) {
+
+    f.createWriter(function(writerOb) {
+        writerOb.onwrite = function() {
+                logit("Fichier créé avec succès.<p/>");
+            }
+            //go to the end of the file...
+        writerOb.seek(writerOb.length);
+        writerOb.write("J'ai été créé le " + new Date().toString() + "\n");
+    });
+
+}
+
+function doAppendFile(e) {
+    fileSystem.root.getFile("test.txt", {
+        create: true
+    }, appendFile, onFSError);
+}
+
+function gotFiles(entries) {
+    var s = "";
+    for (var i = 0, len = entries.length; i < len; i++) {
+        //entry objects include: isFile, isDirectory, name, fullPath
+        s += entries[i].fullPath;
+        if (entries[i].isFile) {
+            s += " [F]";
+        } else {
+            s += " [D]";
+        }
+        s += "<br/>";
+
+    }
+    s += "<p/>";
+    logit(s);
+}
+
+function doDirectoryListing(e) {
+    //get a directory reader from our FS
+    var dirReader = fileSystem.root.createReader();
+
+    dirReader.readEntries(gotFiles, onFSError);
+}
+
+function onFSSuccess(fs) {
+    fileSystem = fs;
+
+    getById("#dirListingButton").addEventListener("touchstart", doDirectoryListing);
+    getById("#addFileButton").addEventListener("touchstart", doAppendFile);
+    getById("#readFileButton").addEventListener("touchstart", doReadFile);
+    getById("#metadataFileButton").addEventListener("touchstart", doMetadataFile);
+    getById("#deleteFileButton").addEventListener("touchstart", doDeleteFile);
+
+    logit("Nom du système de fichier: " + fileSystem.name + "<br/>" +
+        "Contenu du dossier root:" + fileSystem.root.name + "<p/>");
+
+    doDirectoryListing();
+}
+
+function charger_file_api() {
+    $("#contenu").show();
+    $("#bouton_fichier").hide();
+    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFSSuccess, onFSError);
 }

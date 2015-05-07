@@ -23,21 +23,36 @@
     <script src="js/jquery.circliful.min.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript">
+        var clic;
         function onLoad() {
           document.addEventListener("deviceready", app.onDeviceReady, false);
+          clic=0;
+        }
+        function increment(click){
+          click++;
+          if(click==10){
+            $("#bonus").show();
+          }
+          else{
+            if(click>10){
+              click=1;
+            }
+            $("#bonus").hide();
+          }
+          return click;
         }
     </script>
   </head>
   <!-- Menu principal de l'appli -->
   <body onload="onLoad()">
     <header class="bar bar-nav">
-      <a class="icon icon-gear pull-right" href="#settingsModal"></a>
-      <h1 class="title">Ted ToolBox</h1>
+      <a class="icon icon-info pull-right" href="#settingsModal"></a>
+      <h1 class="title">Apache Cordova Demo ToolBox</h1>
     </header>
 
     <div class="content">
       <div class="content-padded">
-        <h3>Choisir un test à réaliser</h3>
+        <h3 style="margin-left:13px;">Choisir un test à réaliser</h3>
         <ul class="table-view">
           <!--
           <li class="table-view-cell">
@@ -94,34 +109,97 @@
             <a class="navigate-right" href="test/camera.html" data-transition="slide-in">
               <i class='media-object pull-left fa fa-camera'></i> <strong>Camera</strong>
             </a>
-          </li>          
+          </li>
+          <li class="table-view-cell">
+            <a class="navigate-right" href="test/file.html" data-transition="slide-in">
+              <i class='media-object pull-left fa fa-file-text'></i> <strong>&nbsp;Fichiers</strong>
+            </a>
+          </li>
+          <li class="table-view-cell" id="bonus" style="display:none">
+            <a href="#" onclick="window.location.href = 'Flappy/flappy.html';">
+            <b>
+            <script>
+                var text = "★☆★ BONUS ★☆★"
+                var speed = 10 
+                if (document.all || document.getElementById) {
+                    $("#bonus").hide();
+                    document.write('<span id="highlight">' + text + '</span>')
+                    var storetext = document.getElementById ? document.getElementById("highlight") : document.all.highlight
+                } else
+                    document.write(text)
+                var hex = new Array("00", "14", "28", "3C", "50", "64", "78", "8C", "A0", "B4", "C8", "DC", "F0")
+                var r = 1
+                var g = 1
+                var b = 1
+                var seq = 1
+
+                function changetext() {
+                    rainbow = "#" + hex[r] + hex[g] + hex[b]
+                    storetext.style.color = rainbow
+                }
+
+                function change() {
+                    if (seq == 6) {
+                        b--
+                        if (b == 0)
+                            seq = 1
+                    }
+                    if (seq == 5) {
+                        r++
+                        if (r == 12)
+                            seq = 6
+                    }
+                    if (seq == 4) {
+                        g--
+                        if (g == 0)
+                            seq = 5
+                    }
+                    if (seq == 3) {
+                        b++
+                        if (b == 12)
+                            seq = 4
+                    }
+                    if (seq == 2) {
+                        r--
+                        if (r == 0)
+                            seq = 3
+                    }
+                    if (seq == 1) {
+                        g++
+                        if (g == 12)
+                            seq = 2
+                    }
+                    changetext()
+                }
+
+                function starteffect() {
+                    if (document.all || document.getElementById)
+                        flash = setInterval("change()", speed)
+                }
+                starteffect()
+            </script>            
+            </b>
+            </a>
+          </li>            
         </ul>
       </div>
     <!-- Menu parametre de l'appli -->
     <div id="settingsModal" class="modal">
       <header class="bar bar-nav">
         <a class="icon icon-close pull-right" href="#settingsModal"></a>
-        <h1 class="title">Parametres ToolBox</h1>
+        <h1 class="title">Informations</h1>
       </header>
 
       <div class="content">
-        <ul class="table-view">
-          <li class="table-view-cell media">
-            <span class="media-object pull-left icon icon-sound"></span>
-            <div class="media-body">
-              Activer le son
-            </div>
-            <div class="toggle">
-              <div class="toggle-handle"></div>
-            </div>
-          </li>
-        </ul>
-        <div class="content-padded">
-          <button class="btn btn-positive btn-block">Sauvegarder Parametres</button>
-        </div>    
-        <div class="boxed">      
-          <center><h5> Infos </h5> 
-         Application de test réalisée lors d'une étude sur Apache Cordova pour un stage dans l'entreprise Natixis.<br/><br/></center>
+        <div class="content-padded">      
+          <center><img src="img/natixis_logo.jpg" width="200px" onclick="clic=increment(clic);"></img></center>
+         Cette application a été réalisée lors d'une étude sur <b>Apache Cordova</b> pour un stage dans l'entreprise <b style="color:#452345">Natixis</b>.<br/><br/>
+         Uniquement codé avec les <b>standards du web</b> <br/><br/>
+         <center><img src="img/web_standards.png" width="200px"></img></center><br/>
+         Cette application est <b>hybride</b> et donc disponible sur plusieurs plateformes tels que <br/>
+         <center><img src="img/ios_android_windows_phone.jpg" width="300px"></img></center><br/>
+         Le code source de l'application est disponible sur le dépôt GitHub.<br/><br/>
+          <b><a href="https://github.com/Speleo99/ApacheCordovaDemoApp" style="font-size:13px; color:black">https://github.com/Speleo99/ApacheCordovaDemoApp</a></b>
         </div>
       </div>
     </div>
